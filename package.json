@@ -1,0 +1,19 @@
+{
+  "name": "urlquery",
+  "version": "0.0.0",
+  "description": "easy use URL Query parameter Methods",
+  "keywords": ["Javascript"],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ken7253 <ken7253@gmail.com> (https://dairoku-studio.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-loader": "^8.0.4",
+    "typescript": "^4.0.3",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
