@@ -9,7 +9,9 @@
 `urlQuery.data()` メソッドはURL引数を指定された型に変換して返却します。  
 
 #### Samle URL
-`https://example.com?string=hoge&boolean=ture&number=000`
+```
+https://example.com?string=hoge&boolean=ture&number=000
+```
 
 ```javascript
 urlQuery.data(dataType["string" | "array" | "object"]);
@@ -36,16 +38,19 @@ urlQuery.data(dataType["string" | "array" | "object"]);
 
 ### setCssVar
 #### Samle URL
-`https://example.com?color=#fff&fs=16px`
+```
+https://example.com?color=%23fff&fs=16px
+```
+
+*URL引数の中にハッシュ(#)を含める場合は必ずエスケープをした文字列(%23)を使用してください。*
 
 `urlQuery.setCssVar()` メソッドは指定した要素で [CSS変数](https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties) を宣言させます。  
 `targetElement` 引数を省略した場合その変数は `:root` での宣言となります。  
 
 ```javascript
 urlQuery.setCssVar(
-    variableName,
-    targetElement,
-    tagetProp([property_1,property_2 ...] || "all")
+    tagetProp([property_1,property_2 ...] || "all"),
+    targetElement // option
 );
 ```
 
@@ -56,9 +61,6 @@ urlQuery.setCssVar(
 }
 ```
 #### 引数
-
-`variableName`  
-
 `targetElement`  
 
 `tagetProp`  
