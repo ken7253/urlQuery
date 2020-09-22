@@ -1,9 +1,12 @@
+// Constant
 const URL_QUERY_PARAMETER: string = decodeURIComponent(window.location.search);
 
+// Interface
 interface anyObj {
   [Array: string]: any;
 };
 
+// Function
 const data = (dataType: string): string | Array<string> | object => {
   let result: string | Array<string> | object = "";
 
@@ -36,6 +39,7 @@ const setCssVar = (
   const appendCssEl = document.createElement("style");
   const getDataObj: object = data("object");
 
+  // Determine if the argument is "all"
   function isTagetPropAll(taget:Array<string>) {
     const isTagetAll: boolean = taget === ["all"] || taget === ["All"];
     return isTagetAll ? processAllProps() : processSomeProps();
@@ -43,20 +47,21 @@ const setCssVar = (
 
   // (isTagetAll === ture) tagetProp if "all" || "All"
   function processAllProps(): string {
-    const result = processProps();
+    const result = convCssFormat();
     return result;
   };
 
   // (isTagetAll === fales) tagetProp if [prop_1,prop_2 ...]
   function processSomeProps() {
     propFilter();
-    const result = processProps(); 
+    const result = convCssFormat(); 
     return result;
   };
 
   // getDataObj => filtered by tagetProp :Array
   function propFilter() {
     const filteredProp: anyObj = {};
+    // Comparing data("object") and tagetProp
     for (let [key, value] of Object.entries(getDataObj)) {
       for (let item of tagetProp) {
         if (key === item) {
@@ -65,20 +70,24 @@ const setCssVar = (
         }
       };
     };
+    return filteredProp;
   };
 
-  function processProps(priorityData: object): string = getDataObj {
-    let convertCssFormat: string = `${opt_taget} {`;
+  // Convert object :object => css file :string
+  function convCssFormat(): string {
+    let innerCssText: string = `${opt_taget} {`;
     for (const [key, value] of Object.entries(getDataObj)) {
-      convertCssFormat += ` --${key}: ${value};`;
+      innerCssText += ` --${key}: ${value};`;
     };
-    convertCssFormat += " }";
-    return convertCssFormat;
+    innerCssText += " }";
+    return innerCssText;
   };
 };
 
+// Export object
 const urlQuery = {
   data,
   setCssVar,
 };
+
 export default urlQuery;
