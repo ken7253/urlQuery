@@ -1,5 +1,6 @@
 // Constant
 const URL_QUERY_PARAMETER: string = decodeURIComponent(window.location.search);
+const ERROR_TEXT_ARGS: string = "This function argument is not a valid value."
 
 // Interface
 interface anyObj {
@@ -27,7 +28,7 @@ const data = (dataType: string): string | Array<string> | object => {
       result = obj;
       break;
     default:
-      throw new Error("urlQuery.data argument is not a valid value.");
+      throw new Error(ERROR_TEXT_ARGS);
   }
   return result;
 };
@@ -37,11 +38,12 @@ const setCssVar = (
   opt_taget: string = ":root"
 ): void => {
   const appendCssEl = document.createElement("style");
+  // need fix
   const getDataObj: object = data("object");
   const docHead = document.head;
 
   // Determine if the argument is "all"
-  function isTagetPropAll(taget:Array<string>) {
+  function createCssText(taget:Array<string>) {
     const isTagetAll: boolean = taget === ["all"] || taget === ["All"];
     return isTagetAll ? processAllProps() : processSomeProps();
   };
@@ -84,7 +86,7 @@ const setCssVar = (
   };
 
   // append css file => HTML head
-  appendCssEl.innerText = isTagetPropAll(tagetProp);
+  appendCssEl.innerText = createCssText(tagetProp);
   docHead.insertBefore(appendCssEl, docHead.firstElementChild);
 };
 
