@@ -38,6 +38,7 @@ const setCssVar = (
 ): void => {
   const appendCssEl = document.createElement("style");
   const getDataObj: object = data("object");
+  const docHead = document.head;
 
   // Determine if the argument is "all"
   function isTagetPropAll(taget:Array<string>) {
@@ -47,14 +48,13 @@ const setCssVar = (
 
   // (isTagetAll === ture) tagetProp if "all" || "All"
   function processAllProps(): string {
-    const result = convCssFormat();
+    const result = convCssFormat(getDataObj);
     return result;
   };
 
   // (isTagetAll === fales) tagetProp if [prop_1,prop_2 ...]
   function processSomeProps() {
-    propFilter();
-    const result = convCssFormat(); 
+    const result = convCssFormat(propFilter()); 
     return result;
   };
 
@@ -74,14 +74,18 @@ const setCssVar = (
   };
 
   // Convert object :object => css file :string
-  function convCssFormat(): string {
+  function convCssFormat(importData :object): string {
     let innerCssText: string = `${opt_taget} {`;
-    for (const [key, value] of Object.entries(getDataObj)) {
+    for (const [key, value] of Object.entries(importData)) {
       innerCssText += ` --${key}: ${value};`;
     };
     innerCssText += " }";
     return innerCssText;
   };
+
+  // append css file => HTML head
+  appendCssEl.innerText = isTagetPropAll(tagetProp);
+  docHead.insertBefore(appendCssEl, docHead.firstElementChild);
 };
 
 // Export object
