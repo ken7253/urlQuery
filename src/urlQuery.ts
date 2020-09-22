@@ -1,5 +1,9 @@
 const URL_QUERY_PARAMETER: string = decodeURIComponent(window.location.search);
 
+interface anyObj {
+  [Array: string]: any;
+};
+
 const data = (dataType: string): string | Array<string> | object => {
   let result: string | Array<string> | object = "";
 
@@ -12,10 +16,7 @@ const data = (dataType: string): string | Array<string> | object => {
       break;
     case "object":
       const arr = URL_QUERY_PARAMETER.slice(1).split("&");
-      const obj: queryObj = {};
-      interface queryObj {
-        [tmpArr: string]: any;
-      }
+      const obj: anyObj = {};
       arr.forEach((el) => {
         const tmpArr: Array<string> = el.split("=");
         obj[tmpArr[0]] = tmpArr[1];
@@ -29,36 +30,51 @@ const data = (dataType: string): string | Array<string> | object => {
 };
 
 const setCssVar = (
-  tagetProp: Array<string> | string,
+  tagetProp: Array<string>,
   opt_taget: string = ":root"
 ): void => {
   const appendCssEl = document.createElement("style");
   const getDataObj: object = data("object");
 
-  function isTagetPropAll(taget: string | Array<string>) {
-    const isTagetAll: boolean = (taget === "all" || taget === "All");
-    return isTagetAll ? processAllProps() : processSomeProps(tagetProp);
+  function isTagetPropAll(taget:Array<string>) {
+    const isTagetAll: boolean = taget === ["all"] || taget === ["All"];
+    return isTagetAll ? processAllProps() : processSomeProps();
   };
 
-  // tagetProp => "all" || "All" (isTagetAll === ture)
-  function processAllProps():string {
-    // getDataObj全部処理
-    let convertCssFormat :string = `${opt_taget} {`;
-    for (const [key, value] of Object.entries(getDataObj)) {
-      convertCssFormat += `--${key}: ${value};\n`;
+  // (isTagetAll === ture) tagetProp if "all" || "All"
+  function processAllProps(): string {
+    const result = processProps();
+    return result;
+  };
+
+  // (isTagetAll === fales) tagetProp if [prop_1,prop_2 ...]
+  function processSomeProps() {
+    propFilter();
+    const result = processProps(); 
+    return result;
+  };
+
+  // getDataObj => filtered by tagetProp :Array
+  function propFilter() {
+    const filteredProp: anyObj = {};
+    for (let [key, value] of Object.entries(getDataObj)) {
+      for (let item of tagetProp) {
+        if (key === item) {
+          filteredProp[key] = value;
+          break;
+        }
+      };
     };
-    convertCssFormat += '}';
+  };
+
+  function processProps(priorityData: object): string = getDataObj {
+    let convertCssFormat: string = `${opt_taget} {`;
+    for (const [key, value] of Object.entries(getDataObj)) {
+      convertCssFormat += ` --${key}: ${value};`;
+    };
+    convertCssFormat += " }";
     return convertCssFormat;
   };
-
-  // tagetProp => [prop_1,prop_2 ...] (isTagetAll === fales)
-  function processSomeProps(tagetProp: Array<string>) {
-    tagetProp.forEach((el) => {
-      // targetPropに指定されたもののみgetDataObjから抽出して処理
-
-    });
-  };
-  isTagetPropAll(tagetProp);
 };
 
 const urlQuery = {

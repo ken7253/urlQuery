@@ -42,14 +42,14 @@ urlQuery.data(dataType["string" | "array" | "object"]);
 https://example.com?color=%23fff&fs=16px
 ```
 
-*URL引数の中にハッシュ(#)を含める場合は必ずエスケープをした文字列(%23)を使用してください。*
+*URL引数の中にハッシュ ( # ) を含める場合は必ずエスケープをした文字列 ( %20 ) を使用してください。*
 
 `urlQuery.setCssVar()` メソッドは指定した要素で [CSS変数](https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties) を宣言させます。  
 `targetElement` 引数を省略した場合その変数は `:root` での宣言となります。  
 
 ```javascript
 urlQuery.setCssVar(
-    tagetProp([property_1,property_2 ...] || "all"),
+    tagetProp([property_1,property_2 ...] || ["all"]),
     targetElement // option
 );
 ```
@@ -65,6 +65,6 @@ urlQuery.setCssVar(
 
 `tagetProp`  
 - Array => 指定されたプロパティのみを展開します。  
-- "all" => すべてのプロパティを展開します。  
+- \["all"\] => すべてのプロパティを展開します。  
 
 *※allでの展開は便利ですが意図しない変数の宣言を行う可能性があるため原則的には配列で指定してください*
