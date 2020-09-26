@@ -3,8 +3,8 @@ const URL_QUERY_PARAMETER: string = decodeURIComponent(window.location.search);
 const ERROR_TEXT_ARGS: string = "This function argument is not a valid value."
 
 // Interface
-interface anyObj {
-  [Array: string]: any;
+interface queryDataObj {
+  [key: string]: string;
 };
 
 // Function
@@ -20,7 +20,7 @@ const data = (dataType: string): string | Array<string> | object => {
       break;
     case "object":
       const arr = URL_QUERY_PARAMETER.slice(1).split("&");
-      const obj: anyObj = {};
+      const obj: queryDataObj = {};
       arr.forEach((el) => {
         const tmpArr: Array<string> = el.split("=");
         obj[tmpArr[0]] = tmpArr[1];
@@ -39,7 +39,7 @@ const setCssVar = (
 ): void => {
   const appendCssEl = document.createElement("style");
   // need fix
-  const getDataObj: object = data("object");
+  const getDataObj = data("object");
   const docHead = document.head;
 
   // Determine if the argument is "all"
@@ -62,7 +62,7 @@ const setCssVar = (
 
   // getDataObj => filtered by tagetProp :Array
   function propFilter() {
-    const filteredProp: anyObj = {};
+    const filteredProp: queryDataObj = {};
     // Comparing data("object") and tagetProp
     for (let [key, value] of Object.entries(getDataObj)) {
       for (let item of tagetProp) {
