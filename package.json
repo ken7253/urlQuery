@@ -1,13 +1,21 @@
 {
   "name": "urlquery",
   "version": "0.0.0",
+  "private": true,
   "description": "easy use URL Query parameter Methods",
-  "keywords": ["Javascript"],
-  "main": "index.js",
+  "keywords": [
+    "Javascript",
+    "Typescript"
+  ],
+  "main": "dist/urlQuery.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install": "npm i"
   },
   "author": "ken7253 <ken7253@gmail.com> (https://dairoku-studio.com)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ken7253/urlQuery.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "ts-loader": "^8.0.4",
