@@ -3,15 +3,9 @@ const URL_QUERY_PARAMETER: string = decodeURIComponent(window.location.search);
 const ERROR_TEXT_ARGS: string = "This function argument is not a valid value.";
 
 // Interface
-<<<<<<< HEAD
 interface queryDataObj {
   [key: string]: string;
 };
-=======
-interface anyObj {
-  [Array: string]: any;
-}
->>>>>>> 25c2b2056463abf89a8f7421081a18c2246a75c9
 
 // Function
 const data = (dataType: string): string | Array<string> | object => {
@@ -25,13 +19,8 @@ const data = (dataType: string): string | Array<string> | object => {
       result = URL_QUERY_PARAMETER.slice(1).split("&");
       break;
     case "object":
-<<<<<<< HEAD
       const arr = URL_QUERY_PARAMETER.slice(1).split("&");
       const obj: queryDataObj = {};
-=======
-      const arr: Array<string> = URL_QUERY_PARAMETER.slice(1).split("&");
-      const obj: anyObj = {};
->>>>>>> 25c2b2056463abf89a8f7421081a18c2246a75c9
       arr.forEach((el) => {
         const tmpArr: Array<string> = el.split("=");
         obj[tmpArr[0]] = tmpArr[1];
@@ -50,13 +39,8 @@ const setCssVar = (
 ): void => {
   const appendCssEl: HTMLStyleElement = document.createElement("style");
   // need fix
-<<<<<<< HEAD
   const getDataObj = data("object");
   const docHead = document.head;
-=======
-  const getDataObj: object = data("object");
-  const docHead: HTMLHeadElement = document.head;
->>>>>>> 25c2b2056463abf89a8f7421081a18c2246a75c9
 
   // Determine if the argument is "all"
   function createCssText(taget: Array<string>) {
