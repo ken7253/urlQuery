@@ -6,10 +6,11 @@ const ERROR_TEXT_ARGS: string = "This function argument is not a valid value.";
 interface queryDataObj {
   [key: string]: string;
 };
+type dataInputType = 'string' | 'array' | 'object';
 
 // Function
-const data = (dataType: string): string | Array<string> | object => {
-  let result: string | Array<string> | object = "";
+const data = (dataType: dataInputType): any => {
+  let result = null;
 
   switch (dataType) {
     case "string":
@@ -39,7 +40,7 @@ const setCssVar = (
 ): void => {
   const appendCssEl: HTMLStyleElement = document.createElement("style");
   // need fix
-  const getDataObj = data("object");
+  const getDataObj: queryDataObj = data("object");
   const docHead = document.head;
 
   // Determine if the argument is "all"
@@ -91,7 +92,7 @@ const setCssVar = (
 };
 
 // Export object
-const urlQuery = {
+export const urlQuery = {
   data,
   setCssVar,
 };
