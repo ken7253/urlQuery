@@ -37,6 +37,7 @@ urlQuery.data(dataType["string" | "array" | "object"]);
 | `"string"` | URL引数をそのまま文字列で返却         |
 |  `"array"` | 各項目を配列として返却                |
 | `"object"` | 各プロパティをkeyとvalueに代入して返却|  
+
 また各引数は文字列で指定してください。  
 
 ### setCssVar
