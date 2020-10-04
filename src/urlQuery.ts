@@ -1,32 +1,35 @@
 // Constant
-const URL_QUERY_PARAMETER: string = decodeURIComponent(window.location.search);
-const ERROR_TEXT_ARGS: string = "This function argument is not a valid value.";
+const URL_QUERY_PARAMETER = decodeURIComponent(window.location.search);
+const ERROR_TEXT_ARGS = "This function argument is not a valid value.";
 
 // Interface
 interface queryDataObj {
   [key: string]: string;
-};
-type dataInputType = 'string' | 'array' | 'object';
+}
+type dataInputType = "string" | "array" | "object";
+type dataReturnType = string | string[] | queryDataObj;
 
 // Function
-const data = (dataType: dataInputType): any => {
-  let result = null;
+const data = <T extends dataReturnType = queryDataObj >(
+  dataType: dataInputType = "object"
+): T => {
+  let result;
 
   switch (dataType) {
     case "string":
-      result = URL_QUERY_PARAMETER;
+      result = URL_QUERY_PARAMETER as T;
       break;
     case "array":
-      result = URL_QUERY_PARAMETER.slice(1).split("&");
+      result = URL_QUERY_PARAMETER.slice(1).split("&") as T;
       break;
     case "object":
       const arr = URL_QUERY_PARAMETER.slice(1).split("&");
       const obj: queryDataObj = {};
       arr.forEach((el) => {
-        const tmpArr: Array<string> = el.split("=");
+        const tmpArr: string[] = el.split("=");
         obj[tmpArr[0]] = tmpArr[1];
       });
-      result = obj;
+      result = obj as T;
       break;
     default:
       throw new Error(ERROR_TEXT_ARGS);
@@ -35,16 +38,16 @@ const data = (dataType: dataInputType): any => {
 };
 
 const setCssVar = (
-  tagetProp: Array<string>,
+  tagetProp: string[],
   opt_taget: string = ":root"
 ): void => {
   const appendCssEl: HTMLStyleElement = document.createElement("style");
   // need fix
-  const getDataObj: queryDataObj = data("object");
+  const getDataObj = data("object");
   const docHead = document.head;
 
   // Determine if the argument is "all"
-  function createCssText(taget: Array<string>) {
+  function createCssText(taget: string[]) {
     const isTagetAll: boolean = taget === ["all"] || taget === ["All"];
     return isTagetAll ? processAllProps() : processSomeProps();
 
@@ -52,14 +55,14 @@ const setCssVar = (
     function processAllProps(): string {
       const result = convCssFormat(getDataObj);
       return result;
-    };
+    }
 
     // (isTagetAll === fales) tagetProp if [prop_1,prop_2 ...]
     function processSomeProps() {
       const result = convCssFormat(propFilter());
       return result;
-    };
-  };
+    }
+  }
 
   // getDataObj => filtered by tagetProp :Array
   function propFilter() {
