@@ -10,7 +10,7 @@ type dataInputType = "string" | "array" | "object";
 type dataReturnType = string | string[] | queryDataObj;
 
 // Function
-const data = <T extends dataReturnType = queryDataObj >(
+const data = <T extends dataReturnType = queryDataObj>(
   dataType: dataInputType = "object"
 ): T => {
   let result;
@@ -37,10 +37,7 @@ const data = <T extends dataReturnType = queryDataObj >(
   return result;
 };
 
-const setCssVar = (
-  tagetProp: string[],
-  opt_taget: string = ":root"
-): void => {
+const setCssVar = (tagetProp: string[], opt_taget: string = ":root"): void => {
   const appendCssEl: HTMLStyleElement = document.createElement("style");
   // need fix
   const getDataObj = data("object");
@@ -48,7 +45,10 @@ const setCssVar = (
 
   // Determine if the argument is "all"
   function createCssText(taget: string[]) {
-    const isTagetAll: boolean = taget === ["all"] || taget === ["All"];
+    // const isTagetAll: boolean = taget === ["all"] || taget === ["All"];
+    const isTagetAll: boolean = taget.some(
+      (str) => str === "ALL" && taget.length === 1
+    );
     return isTagetAll ? processAllProps() : processSomeProps();
 
     // (isTagetAll === ture) tagetProp if "all" || "All"
