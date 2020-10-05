@@ -39,25 +39,23 @@ const data = <T extends dataReturnType = queryDataObj>(
 
 const setCssVar = (tagetProp: string[], opt_taget: string = ":root"): void => {
   const appendCssEl: HTMLStyleElement = document.createElement("style");
-  // need fix
   const getDataObj = data("object");
   const docHead = document.head;
 
   // Determine if the argument is "all"
   function createCssText(taget: string[]) {
-    // const isTagetAll: boolean = taget === ["all"] || taget === ["All"];
     const isTagetAll: boolean = taget.some(
       (str) => str === "ALL" && taget.length === 1
     );
     return isTagetAll ? processAllProps() : processSomeProps();
 
-    // (isTagetAll === ture) tagetProp if "all" || "All"
+    // isTagetAll === ture
     function processAllProps(): string {
       const result = convCssFormat(getDataObj);
       return result;
     }
 
-    // (isTagetAll === fales) tagetProp if [prop_1,prop_2 ...]
+    // isTagetAll === fales
     function processSomeProps() {
       const result = convCssFormat(propFilter());
       return result;
