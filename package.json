@@ -10,7 +10,8 @@
   "main": "dist/urlQuery.js",
   "scripts": {
     "serve": "serve .",
-    "build": "tsc"
+    "build": "tsc",
+    "watch": "tsc -w"
   },
   "author": "ken7253 <ken7253@gmail.com> (https://dairoku-studio.com)",
   "repository": {

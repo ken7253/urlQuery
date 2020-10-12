@@ -45,7 +45,7 @@ const setCssVar = (tagetProp: string[], opt_taget: string = ":root"): void => {
   // Determine if the argument is "all"
   function createCssText(taget: string[]) {
     const isTagetAll: boolean = taget.some(
-      (str) => str === "ALL" && taget.length === 1
+      (str) => str === "all" && taget.length === 1
     );
     return isTagetAll ? processAllProps() : processSomeProps();
 
@@ -93,7 +93,7 @@ const setCssVar = (tagetProp: string[], opt_taget: string = ":root"): void => {
 };
 
 // Export object
-export const urlQuery = {
+const urlQuery = {
   data,
   setCssVar,
 };
