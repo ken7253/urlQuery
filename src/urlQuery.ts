@@ -23,6 +23,7 @@ const data = <T extends dataReturnType = queryDataObj>(
       result = URL_QUERY_PARAMETER.slice(1).split("&") as T;
       break;
     case "object":
+      // fix: + => space
       const arr = URL_QUERY_PARAMETER.slice(1).split("&");
       const obj: queryDataObj = {};
       arr.forEach((el) => {
@@ -39,7 +40,7 @@ const data = <T extends dataReturnType = queryDataObj>(
 
 const setCssVar = (tagetProp: string[], opt_taget: string = ":root"): void => {
   const appendCssEl = document.createElement("style");
-  const getDataObj = data("object");
+  const getDataObj = data();
   const docHead = document.head;
 
   // Determine if the argument is "all"
@@ -90,10 +91,19 @@ const setCssVar = (tagetProp: string[], opt_taget: string = ":root"): void => {
   docHead.insertBefore(appendCssEl, docHead.firstElementChild);
 };
 
+const increment = (tagetKey: string, opt_step: number = 1): void => {
+  const getDataObj = data();
+  getDataObj[tagetKey] += opt_step;
+  // set url parameter? and Refresh?
+};
+
+// create => set queryDataObj to url parameter?
+
 // Export object
 const urlQuery = {
   data,
   setCssVar,
+  increment,
 };
 
 export default urlQuery;
