@@ -38,13 +38,13 @@ const data = <T extends dataReturnType = queryDataObj>(
 };
 
 const setCssVar = (tagetProp: string[], opt_taget: string = ":root"): void => {
-  const appendCssEl: HTMLStyleElement = document.createElement("style");
+  const appendCssEl = document.createElement("style");
   const getDataObj = data("object");
   const docHead = document.head;
 
   // Determine if the argument is "all"
   function createCssText(taget: string[]) {
-    const isTagetAll: boolean = taget.some(
+    const isTagetAll = taget.some(
       (str) => str === "all" && taget.length === 1
     );
     return isTagetAll ? processAllProps() : processSomeProps();
@@ -79,7 +79,7 @@ const setCssVar = (tagetProp: string[], opt_taget: string = ":root"): void => {
 
   // Convert object :object => css file :string
   function convCssFormat(importData: object): string {
-    let innerCssText: string = `${opt_taget} {`;
+    let innerCssText = `${opt_taget} {`;
     for (const [key, value] of Object.entries(importData)) {
       innerCssText += ` --${key}: ${value};`;
     }
