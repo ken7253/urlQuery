@@ -40,12 +40,14 @@ const data = <T extends dataReturnType = queryDataObj>(
 
 const setCssVar = (tagetProp: string[], opt_taget: string = ":root"): void => {
   const appendCssEl = document.createElement("style");
-  const getDataObj = data();
+  const getDataObj = data("object");
   const docHead = document.head;
 
   // Determine if the argument is "all"
   function createCssText(taget: string[]) {
-    const isTagetAll = taget.some((str) => str === "all" && taget.length === 1);
+    const isTagetAll = taget.some(
+      (str) => str === "all" && taget.length === 1
+    );
     return isTagetAll ? processAllProps() : processSomeProps();
 
     // isTagetAll === ture
