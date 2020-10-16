@@ -93,11 +93,11 @@ const setCssVar = (tagetProp: string[], opt_taget: string = ":root"): void => {
   docHead.insertBefore(appendCssEl, docHead.firstElementChild);
 };
 
-const increment = (tagetKey: string, opt_step: number = 1): void => {
-  const getDataObj = data();
-  getDataObj[tagetKey] += opt_step;
-  // set url parameter? and Refresh?
-};
+// const increment = (tagetKey: string, opt_step: number = 1): void => {
+//   const getDataObj = data();
+//   getDataObj[tagetKey] += opt_step;
+//   set url parameter? and Refresh?
+// };
 
 // create => set queryDataObj to url parameter?
 
@@ -105,7 +105,6 @@ const increment = (tagetKey: string, opt_step: number = 1): void => {
 const urlQuery = {
   data,
   setCssVar,
-  increment,
 };
 
 export default urlQuery;
