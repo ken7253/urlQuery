@@ -9,7 +9,7 @@
   ],
   "main": "dist/urlQueryUtil.js",
   "scripts": {
-    "serve": "serve test",
+    "serve": "serve",
     "tsc:build": "tsc",
     "tsc:watch": "tsc -w"
   },

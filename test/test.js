@@ -1,7 +1,7 @@
-import urlQueryUtil from "../dist/urlQuery.js";
+import urlQueryUtil from "../dist/urlQueryUtil.js";
 
 
-// taget: urlQuery.data() function
+// taget: urlQueryUtil.data() function
 function testDataFunc() {
   const dataArr = ["string", "array", "object"];
   dataArr.forEach((el) => {
@@ -11,5 +11,5 @@ function testDataFunc() {
 }
 testDataFunc();
 
-// taget: urlQuery.setCssVar function
+// taget: urlQueryUtil.setCssVar function
 urlQueryUtil.setCssVar(["all"]);
