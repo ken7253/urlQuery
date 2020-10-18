@@ -1,15 +1,15 @@
-import urlQuery from "../dist/urlQuery.js";
+import urlQueryUtil from "../dist/urlQuery.js";
 
 
 // taget: urlQuery.data() function
 function testDataFunc() {
   const dataArr = ["string", "array", "object"];
   dataArr.forEach((el) => {
-    const result = urlQuery.data(el);
+    const result = urlQueryUtil.data(el);
     console.debug(`${el}: `,result);
   });
 }
 testDataFunc();
 
 // taget: urlQuery.setCssVar function
-urlQuery.setCssVar(["all"]);
+urlQueryUtil.setCssVar(["all"]);

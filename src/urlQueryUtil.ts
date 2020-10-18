@@ -94,9 +94,9 @@ const setCssVar = (tagetProp: string[], opt_taget: string = ":root"): void => {
 };
 
 // Export object
-const urlQuery = {
+const urlQueryUtil = {
   data,
   setCssVar,
 };
 
-export default urlQuery;
+export default urlQueryUtil;

@@ -1,4 +1,4 @@
-# URL Query
+# URL Query Util
 
 ## Feature
 このモジュールではURL引数を扱う複数のメソッドを提供します。  
@@ -6,7 +6,7 @@
 ## Methods
 ### data
 
-`urlQuery.data()` メソッドはURL引数を指定された型に変換して返却します。  
+`urlQueryUtil.data()` メソッドはURL引数を指定された型に変換して返却します。  
 
 #### Samle URL
 ```
@@ -14,7 +14,7 @@ https://example.com?string=hoge&boolean=ture&number=000
 ```
 
 ```javascript
-urlQuery.data(dataType["string" | "array" | "object"]);
+urlQueryUtil.data(dataType["string" | "array" | "object"]);
 
 /* =============================================
 
@@ -25,7 +25,7 @@ urlQuery.data(dataType["string" | "array" | "object"]);
     dataType: object
     =>  {"string": "hoge", "boolean": ture, "number": "000"}
     dataType: other
-    =>  error: urlQuery.data argument is not a valid value.
+    =>  error: urlQueryUtil.data argument is not a valid value.
 
 =============================================  */
 ```
@@ -48,11 +48,11 @@ https://example.com?color=%23fff&fs=16px
 
 *URL引数の中にハッシュ ( # ) を含める場合は必ずエスケープをした文字列 ( %23 ) を使用してください。*
 
-`urlQuery.setCssVar()` メソッドは指定した要素で [CSS変数](https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties) を宣言させます。  
+`urlQueryUtil.setCssVar()` メソッドは指定した要素で [CSS変数](https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties) を宣言させます。  
 `targetElement` 引数を省略した場合その変数は `:root` での宣言となります。  
 
 ```javascript
-urlQuery.setCssVar(
+urlQueryUtil.setCssVar(
     tagetProp([property_1,property_2 ...] || ["all"]),
     targetElement // option
 );
