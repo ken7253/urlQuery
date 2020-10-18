@@ -1,7 +1,7 @@
 {
   "name": "url-query-util",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "description": "easy use URL Query parameter Methods.",
   "keywords": [
     "Javascript",
