@@ -8,10 +8,14 @@
     "Typescript"
   ],
   "main": "dist/urlQueryUtil.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "serve": "serve",
-    "tsc:build": "tsc",
-    "tsc:watch": "tsc -w"
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prepublishOnly": "npm run build"
   },
   "author": "ken7253 <ken7253@gmail.com> (https://dairoku-studio.com)",
   "repository": {
