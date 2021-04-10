@@ -38,37 +38,37 @@ const data = <T extends dataReturnType = queryDataObj>(
   return result;
 };
 
-const setCssVar = (tagetProp: string[], opt_taget: string = ":root"): void => {
+const setCssVar = (targetProp: string[], opt_target: string = ":root"): void => {
   const appendCssEl = document.createElement("style");
   const getDataObj = data("object");
   const docHead = document.head;
 
   // Determine if the argument is "all"
-  function createCssText(taget: string[]) {
-    const isTagetAll = taget.some(
-      (str) => str === "all" && taget.length === 1
+  function createCssText(target: string[]) {
+    const isTargetAll = target.some(
+      (str) => str === "all" && target.length === 1
     );
-    return isTagetAll ? processAllProps() : processSomeProps();
+    return isTargetAll ? processAllProps() : processSomeProps();
 
-    // isTagetAll === ture
+    // isTargetAll === true
     function processAllProps(): string {
       const result = convCssFormat(getDataObj);
       return result;
     }
 
-    // isTagetAll === fales
+    // isTargetAll === false
     function processSomeProps() {
       const result = convCssFormat(propFilter());
       return result;
     }
   }
 
-  // getDataObj => filtered by tagetProp :Array
+  // getDataObj => filtered by targetProp :Array
   function propFilter() {
     const filteredProp: queryDataObj = {};
-    // Comparing data("object") and tagetProp
+    // Comparing data("object") and targetProp
     for (let [key, value] of Object.entries(getDataObj)) {
-      for (let item of tagetProp) {
+      for (let item of targetProp) {
         if (key === item) {
           filteredProp[key] = value;
           break;
@@ -80,7 +80,7 @@ const setCssVar = (tagetProp: string[], opt_taget: string = ":root"): void => {
 
   // Convert object :object => css file :string
   function convCssFormat(importData: object): string {
-    let innerCssText = `${opt_taget} {`;
+    let innerCssText = `${opt_target} {`;
     for (const [key, value] of Object.entries(importData)) {
       innerCssText += ` --${key}: ${value};`;
     }
@@ -89,7 +89,7 @@ const setCssVar = (tagetProp: string[], opt_taget: string = ":root"): void => {
   }
 
   // append css file => HTML head
-  appendCssEl.innerText = createCssText(tagetProp);
+  appendCssEl.innerText = createCssText(targetProp);
   docHead.insertBefore(appendCssEl, docHead.firstElementChild);
 };
 
