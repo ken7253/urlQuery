@@ -3,7 +3,6 @@
     "browser": true
   },
   "rules": {
-    "@typescript-eslint/rule-name": "error",
     "no-extra-semi": "warn",
     "quotes": ["warn", "single"]
   },
